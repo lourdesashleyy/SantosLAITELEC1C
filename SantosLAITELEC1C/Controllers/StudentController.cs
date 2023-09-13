@@ -5,18 +5,53 @@ namespace SantosLAITELEC1C.Controllers
 {
     public class StudentController : Controller
     {
+        List<Student> StudentList = new List<Student>
+            {
+                new Student()
+                {
+                    StudentId= 1,
+                    StudentFirstName = "Lourdes Ashley",
+                    StudentLastName = "Santos", 
+                    Course = Course.BSIT, 
+                    AdmissionDate = DateTime.Parse("2021-08-26"), 
+                    GPA = 1.5, 
+                    Email = "lourdesashleysantos@gmail.com"
+                },
+                new Student()
+                {
+                    StudentId= 2,StudentFirstName = "Alyssa Marie",
+                    StudentLastName = "Romen", 
+                    Course = Course.BSIS, 
+                    AdmissionDate = DateTime.Parse("2021-08-07"), 
+                    GPA = 1, 
+                    Email = "alyssaromen@gmail.com"
+                },
+                new Student()
+                {
+                    StudentId= 3,
+                    StudentFirstName = "Luis Enrico",
+                    StudentLastName = "Granada", 
+                    Course = Course.BSCS, 
+                    AdmissionDate = DateTime.Parse("2021-01-25"), 
+                    GPA = 1.5, 
+                    Email = "luisgranada@gmail.com"
+                }
+            };
         public IActionResult Index()
         {
-            Student st = new Student();
-            st.StudentId = 1;
-            st.StudentName = "Lourdes Ashley Santos";
-            st.DateEnrolled = DateTime.Parse("8/30/2023");
-            st.Course = Course.BSIT;
-            st.Email = "lourdesashley.santos.cics@ust.edu.ph";
 
-            ViewBag.Student = st;
+            return View(StudentList);
+        }
 
-            return View();
+        public IActionResult ShowDetail(int id)
+        {
+            //Search for the student whose id matches the given id
+            Student? student = StudentList.FirstOrDefault(st => st.StudentId == id);
+
+            if (student != null)//was an student found?
+                return View(student);
+
+            return NotFound();
         }
     }
 }
