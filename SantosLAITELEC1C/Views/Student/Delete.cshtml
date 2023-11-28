@@ -1,0 +1,19 @@
+﻿@{
+    ViewData["Title"] = "Delete";
+}
+@model Student;
+<h1>Are you sure you want to delete?</h1>
+<form asp-action="Delete" method="post">
+    <label asp-for="Id">ID:</label><br>
+    <input asp-for="Id" disabled><br>
+    <label asp-for="FirstName">First name:</label><br>
+    <input asp-for="FirstName" disabled><br>
+    <label asp-for="LastName">Last name:</label><br>
+    <input asp-for="LastName" disabled><br>
+    <label asp-for="Course">Course:</label><br>
+    <select asp-for="Course" asp-items="Html.GetEnumSelectList(typeof(Course))" disabled></select><br>
+    <label asp-for="BirthDate">Birth Date:</label><br>
+    <input asp-for="BirthDate" disabled><br>
+    <input type="submit" value="Delete">
+    <button type="button" onclick="history.back()">Cancel</button>
+</form>
